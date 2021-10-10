@@ -1,0 +1,19 @@
+.text {
+  background-color: #eee;
+}
+
+.text__green {
+  background: #3e3;
+}
+
+.text__red {
+  background: #d26;
+}
+
+.windowWithText {
+  border: 2px solid #22e;
+  width: 400px;
+  /* height: 200px; */
+  background: #aaa;
+  padding: 5px;
+}
