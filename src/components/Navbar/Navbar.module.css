@@ -1,0 +1,21 @@
+.navbar {
+  background: #088;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 10px 20px;
+}
+
+.navbar li {
+  padding-top: 5px;
+}
+
+a.navbar__activeLink {
+  color: #db0;
+  background: #061;
+}
+
+.navbar__navLink {
+  color: #005;
+}

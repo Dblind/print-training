@@ -2,12 +2,24 @@
   background-color: #eee;
 }
 
-.text__green {
+.text__green1 {
   background: #3e3;
 }
+.text__green2 {
+  background: #2a2;
+}
+.text__green3 {
+  background: #151;
+}
 
-.text__red {
+.text__red1 {
   background: #d26;
+}
+.text__red2 {
+  background: #814;
+}
+.text__red3 {
+  background: #402;
 }
 
 .windowWithText {
