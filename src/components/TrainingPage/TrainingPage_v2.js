@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { setCurrentWordNumb, setMainText, getTextEngine, reset } from "../../store/trainingPageReducer";
 import css from './TrainingPage.module.css';
 import Word from "./Word";
 
+const cl = console.log;
 let textExapmle = "lo rem ipsum dolor sit, amet consectetur adipisicing elit. Dolor odit aut earum, itaque fuga fugiat doloribus. Quam modi molestiae quibusdam!";
 
 
@@ -26,51 +27,76 @@ function speech(inputText = "nothingf") {
 }
 
 function TrainingPage(props) {
-  let [engine, setEngin] = useState(props.textEngine);
-  let wordComponents = engine.words.map((w, ind) => { return <Word key={w.word + ind} word={w} /> });
-  let [words, setWords] = useState(wordComponents);
+  //   let [engine, setEngin] = useState(props.textEngine);
+  //   let wordComponents = engine.words.map((w, ind) => { return <Word key={w.word + ind} word={w} /> });
+  //   let [words, setWords] = useState(wordComponents);
 
-  function updateWord(w, ind) {
-    const temp = [...words];
-    temp[ind] = <Word key={w.word + ind} word={w} />;
-    setWords(temp);
-  }
+  //   function updateWord(w, ind) {
+  //     const temp = [...words];
+  //     temp[ind] = <Word key={w.word + ind} word={w} />;
+  //     setWords(temp);
+  //   }
 
-  function inputOnPressKey(event) {
-    if (engine.checkKey(event.key)) {
-      updateWord(engine.words[engine.currentWordNumb], engine.currentWordNumb)
-      engine.nextKey(event.key);
-    }
-  }
+  //   useEffect(() => {
+  //     setEngin(props.textEngine);
+  //     cl("use effect train page");
+  //   });
 
-  // props.setCurrentWordNumb(4);
-  // props.setMainText("lo rem");
+  //   function inputOnPressKey(event) {
+  //     if (engine.checkKey(event.key)) {
+  //       updateWord(engine.words[engine.currentWordNumb], engine.currentWordNumb)
+  //       engine.nextKey(event.key);
+  //     }
+  //   }
 
-  // (event) => { 
-  //   engine.nextKey(event.key); 
-  //   setWords(engine.words.map((w, ind) => { 
-  //     return <Word key={w.word + ind} word={w} /> })) };
+  //   function reset() {
+  //     props.reset();
+  //     setEngin(props.textEngine);
+  //     let temp = engine.words.map((w, ind) => { return <Word key={w.word + ind} word={w} /> });
+  //     setWords(temp);
+  //     console.log(temp);
+  //   }
 
+  // cl(props);
+  const [words, setWords] = useState(props.words)
+
+  useEffect(() => {
+    setWords(props.words);
+  }, [props.words]);
+
+  const [status, setStatus] = useState("");
+
+  const refTextarea = useRef(null);
   return (
     <div>
 
       <div>
-        Window with text.
+        Window with text. A
         <div className={css.windowWithText}>
           {words}
-          <input type="text" onKeyPress={event => inputOnPressKey(event)}
-            value={engine.writingString}
-          /> <span>{engine.counterSimbols}</span>
+          <ShowWords words={words} />
+          <input type="text" onKeyPress={event => (setStatus(props.inputOnPressKey(event)))}
+            value={props.writingString}
+          /> <span>{props.counterSimbols}</span> <span className={css.text__green1}>{status}</span>
           {/* <Word word={"abc d"}></Word> */}
-          <p>{engine.writingString}</p>
+          <pre>{props.writingString}</pre>
 
           <form >
-            <textarea type="text" name="reset" id="reset" />
-            <input type="button" onClick={() => reset()} value="reset" />
+            <textarea ref={refTextarea} type="text" name="reset" id="reset" />
+            <input type="button" onClick={() => props.reset()} value="reset" />
           </form>
+          <button  onClick={() => props.setMainText(refTextarea.current.value)}>set mait text</button>
         </div>
       </div>
     </div>
+  )
+}
+
+function ShowWords(props) {
+  return (
+    <pre>
+      {props.words}
+    </pre>
   )
 }
 
@@ -136,20 +162,22 @@ function TrainingPage(props) {
 // }
 
 
-function mapStateToProps(state) {
-  return {
-    currentWordNumb: state.trainingPage.currentWordNumb,
-    words: state.trainingPage.words,
-    textEngine: state.trainingPage.textEngine,
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     currentWordNumb: state.trainingPage.currentWordNumb,
+//     words: state.trainingPage.words,
+//     textEngine: state.trainingPage.textEngine,
+//   }
+// }
 
-export default connect(mapStateToProps, {
-  setMainText,
-  setCurrentWordNumb,
-  getTextEngine,
-  reset,
-})(TrainingPage);
+// export default connect(mapStateToProps, {
+//   setMainText,
+//   setCurrentWordNumb,
+//   getTextEngine,
+//   reset,
+// })(TrainingPage);
+
+export default TrainingPage;
 
 
 /*

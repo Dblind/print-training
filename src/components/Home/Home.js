@@ -3,6 +3,7 @@ import MainPage from "../MainPage/MainPage";
 import Navbar from "../Navbar/Navbar";
 import Profile from "../Profile/Profile";
 import TrainingPage_v2 from "../TrainingPage/TrainingPage_v2";
+import TrainingPage_v2Container from "../TrainingPage/TrainingPage_v2Container";
 import css from './Home.module.css';
 
 function Home(props) {
@@ -15,7 +16,7 @@ function Home(props) {
         </div>
         <div className={css.home__content}>
           <Switch >
-            <Route path="/train" component={() => <TrainingPage_v2 />} />
+            <Route path="/train" component={() => <TrainingPage_v2Container />} />
             <Route path="/mainPage" component={() => <MainPage />} />
             <Route path="/profile" component={() => <Profile />} />
           </Switch>

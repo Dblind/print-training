@@ -2,7 +2,7 @@ import TextEngine from "../common/TextEngine";
 
 let w = "lo rem ipsum dolor sit, amet consectetur";
 let classColors = ["text__green1", "text__red1"];
-let textEngine = new TextEngine(w.split(" "), classColors);
+let textEngine = new TextEngine(w, w.split(" "), classColors);
 
 const initialState = {
   mainText: w,
@@ -17,6 +17,7 @@ const initialState = {
 const trainingPageReducer = function (state = initialState, action) {
   switch (action.type) {
     case SET_MAIN_TEXT: {
+      console.log(action.text);
       return {
         ...state,
         mainText: action.text,
@@ -39,7 +40,7 @@ const trainingPageReducer = function (state = initialState, action) {
     case RESET: {
       return {
         ...state,
-        textEngine: new TextEngine(state.words, state.settings.classColors),
+        textEngine: new TextEngine(state.mainText, [...state.words], state.settings.classColors),
       }
     }
     case SET_SETTINGS: {

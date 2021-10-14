@@ -1,6 +1,16 @@
+import { getUsers } from '../../API/api';
 import css from './MainPage.module.css';
 
+// let response = getUsers();
+// console.log(response.then(response => response.data));
+// let data = null;
+// response.then(r => {data = r.data});
+// console.log(data);
+
+
+
 function MainPage(props) {
+
   return (
     <div className={css.mainPage}>
       Main page
@@ -32,7 +42,7 @@ function MainPage(props) {
       <div className={css.navButtons}>
         <button className={css.button}>button 1</button>
         <button className={css.button}>button 2</button>
-        <button className={css.button} style={{"align-self": "flex-end",}}>button 3</button>
+        <button className={css.button} style={{ "align-self": "flex-end", }}>button 3</button>
         <button className={css.button}>button 4</button>
         <button className={css.button}>button 5</button>
         <button className={css.button}>button 6</button>

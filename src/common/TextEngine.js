@@ -1,7 +1,8 @@
 
 
 class TextEngine {
-  constructor(words, classColors) {
+  constructor(text, words, classColors) {
+    this.text = text;
     this.words = words.map((w, ind) => new WordEngine(w + " ", classColors));
     this.currentWordNumb = 0;
     this.counterSimbols = 0;
@@ -10,22 +11,23 @@ class TextEngine {
     this.nextKey = this.nextKey.bind(this);
   }
 
+  checkEnded() { return this.text.length == this.counterSimbols; }
+
   nextKey(key) {
     console.log(key);
-    // if (this.checkKey(key)) {
-      this.writingString = this.writingString + key;
-      this.counterSimbols++;
-      if (this.words[this.currentWordNumb].setKeyA(key)) {
-        this.currentWordNumb += 1;
-        // speech(this.words[this.currentWordNumb].word);
-      }
-    // };
+
+    this.writingString = this.writingString + key;
+    this.counterSimbols++;
+    if (this.words[this.currentWordNumb].setKeyA(key)) {
+      this.currentWordNumb += 1;
+      // speech(this.words[this.currentWordNumb].word);
+    }
   }
-
+  
   static validChars = [" ", ",", ".", "!", "?", "-", "+"];
-
-  checkKey(key) {
-    return true;
+  
+  checkKey(key) {    
+    return Boolean(key);
     // (key >= "A" && key <= "Z")
     //   || (key >= "a" && key <= "z")
     //   || (key >= "0" && key <= "9")

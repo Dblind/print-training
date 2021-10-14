@@ -21,9 +21,9 @@ class Word extends React.Component {
 
   render() {
     return (
-      <span>
+      <>
         {this.rendChars()}
-      </span>
+      </>
     )
   }
 
