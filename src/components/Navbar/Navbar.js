@@ -13,6 +13,8 @@ function Navbar(props) {
         </li>
         <li>
           <NavLink activeClassName={css.navbar__activeLink} to="/mainPage" className={css.navbar__navLink} >main page</NavLink>
+        </li><li>
+          <NavLink activeClassName={css.navbar__activeLink} to="/login" className={css.navbar__navLink} >login</NavLink>
         </li>
       </ul>
     </nav>

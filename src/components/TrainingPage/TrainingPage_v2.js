@@ -9,7 +9,7 @@ const cl = console.log;
 let textExapmle = "lo rem ipsum dolor sit, amet consectetur adipisicing elit. Dolor odit aut earum, itaque fuga fugiat doloribus. Quam modi molestiae quibusdam!";
 
 
-function speech(inputText = "nothingf") {
+function speech(inputText = "nothing") {
   var synth = window.speechSynthesis;
   let text = inputText;
   // inputForm.onsubmit = function (event) {
@@ -73,10 +73,11 @@ function TrainingPage(props) {
       <div>
         Window with text. A
         <div className={css.windowWithText}>
-          {words}
+          {props.words}
           <ShowWords words={words} />
+          
           <input type="text" onKeyPress={event => (setStatus(props.inputOnPressKey(event)))}
-            value={props.writingString}
+            onChange={() => { "plag" }} value={props.writingString}
           /> <span>{props.counterSimbols}</span> <span className={css.text__green1}>{status}</span>
           {/* <Word word={"abc d"}></Word> */}
           <pre>{props.writingString}</pre>
@@ -85,7 +86,8 @@ function TrainingPage(props) {
             <textarea ref={refTextarea} type="text" name="reset" id="reset" />
             <input type="button" onClick={() => props.reset()} value="reset" />
           </form>
-          <button  onClick={() => props.setMainText(refTextarea.current.value)}>set mait text</button>
+          <button onClick={() => props.setMainText(refTextarea.current.value)}>set mait text</button>
+          
         </div>
       </div>
     </div>
