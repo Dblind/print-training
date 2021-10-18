@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { Field } from "redux-form";
 import { loginUser, setAuthorized, setAuthorizedUser } from "../../store/AuthenticationReducer";
-import LoginForm from "./LoginForm";
+import LoginForm from "./forms/LoginForm";
 import { authenticationAPI } from "../../API/api";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";

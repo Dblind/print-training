@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 0,
-      "counterId": 19
+      "counterId": 24
     },
     {
       "id": 1,
@@ -88,6 +88,29 @@
       "id": 19,
       "login": "r2",
       "password": "r"
+    },
+    {
+      "id": 20,
+      "login": "r3",
+      "password": "r"
+    },
+    {
+      "id": 21,
+      "login": "r4",
+      "password": "r"
+    },
+    {
+      "id": 22,
+      "login": "r5",
+      "password": "r"
+    },
+    {
+      "id": 23,
+      "login": "r11",
+      "password": "r"
+    },
+    {
+      "id": 24
     }
   ],
   "texttemplates": [
@@ -99,8 +122,40 @@
       "id": 19,
       "login": "r2",
       "texts": [
+        "guest text",
+        "fsaf"
+      ]
+    },
+    {
+      "login": "r4",
+      "texts": [],
+      "id": 20
+    },
+    {
+      "id": 22,
+      "login": "r5",
+      "texts": [
         "22",
-        "1"
+        "rrr 5"
+      ]
+    },
+    {
+      "id": 23,
+      "login": "r11",
+      "texts": [
+        "r11 r",
+        "r11 r222",
+        "444",
+        "http://localhost:3001/profile",
+        "Thank you so much for this really best course! I watched all videos on x2 speed within 1.5 month, you explained everything very understandably! In the end, I've understood that you are not just a best teacher, it turns out you are the most awesome motivator!!! I'll definitely donate regularly because the world needs people like you!"
+      ]
+    },
+    {
+      "id": 24,
+      "texts": [
+        "22",
+        "4554",
+        "4554"
       ]
     }
   ]

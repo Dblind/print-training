@@ -8,7 +8,7 @@ const initialState = {
   userId: 19,
   login: "guest",
   password: "guest",
-  myTexts: ["22"],
+  myTexts: ["guest text"],
 }
 
 const authenticationReducer = function (state = initialState, action) {
@@ -65,6 +65,21 @@ export function setMyTexts(texts) { return { type: SET_MY_TEXTS, texts, } };
 
 function setConditionMessage(message) { return { type: SET_CONDITION_MESSAGE, message, } };
 
+
+export const createUser = userData => dispatch => {
+  authenticationAPI.createUser(userData)
+    .then(response => {
+      // setStatusNote(<span style={{ background: "#0b3", }}>Successful login of the account.</span>);
+      dispatch(setConditionMessage(<span style={{ background: "#0b3", }}>Successful creation of the new account.</span>));
+      dispatch(setAuthorizedUser(response.data));
+      console.log("response user data", response.data);
+    })
+    .catch(err => {
+      dispatch(setConditionMessage(<span style={{ background: "#b03", }}>{err.message}</span>));
+    });
+}
+
+
 export const loginUser = (userData) => async (dispatch) => {
   dispatch(setIsFetching(true));
 
@@ -74,6 +89,7 @@ export const loginUser = (userData) => async (dispatch) => {
       // setStatusNote(<span style={{ background: "#0b3", }}>Successful creation of the new account.</span>) })
       dispatch(setAuthorizedUser(response.data[0]));
       dispatch(setConditionMessage(<span style={{ background: "#0b3", }}>Successful login of the account.</span>));
+      dispatch(getMyTexts());
       console.log(response.data);
     })
     .catch(err => {
@@ -94,9 +110,9 @@ export function sendMyText(text) {
   return function (dispatch, getState) {
     const state = getState();
     authenticationAPI.sendMyTexts(getState().authentication.userId, [...getState().authentication.myTexts, text])
-    .then(response => {
+      .then(response => {
         if (response.statusText == "OK")
-        dispatch(getMyTexts());
+          dispatch(getMyTexts());
       })
       .catch(err => console.log("send my text err: ", err));
   }

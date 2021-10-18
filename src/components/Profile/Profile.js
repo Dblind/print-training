@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { sendMyText } from "../../store/AuthenticationReducer";
-import { reset, setSettings } from "../../store/trainingPageReducer";
+import { reset, setMainText, setSettings } from "../../store/trainingPageReducer";
 import css from '../TrainingPage/TrainingPage.module.css';
 import MyTexts from "./MyTexts/MyTexts";
 
@@ -53,7 +53,7 @@ function Profile(props) {
           <li><input type="submit" valut="submit test" /></li>
         </ul>
       </form>
-      <div><MyTexts sendMyText={props.sendMyText} /></div>
+      <div><MyTexts sendMyText={props.sendMyText} myTexts={props.myTexts} setMainText={props.setMainText} /></div>
     </div>
   )
 }
@@ -61,6 +61,7 @@ function Profile(props) {
 const mapStateToProps = state => {
   return {
     settings: state.trainingPage.settings,
+    myTexts: state.authentication.myTexts,
   }
 };
 
@@ -68,4 +69,5 @@ export default connect(mapStateToProps, {
   reset,
   setSettings,
   sendMyText,
+  setMainText,
 })(Profile);

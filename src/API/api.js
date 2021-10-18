@@ -18,7 +18,7 @@ async function createUser(dataUser) {
     const response = await axios.get(`${baseURL}/users/0`);
     const newId = response.data.counterId + 1;
     const patch = await patchUser({ id: 0, counterId: newId, });
-    
+    const remoteTexts = await createRemoteTexts(newId, dataUser.login);
 
     return axios.post(`${baseURL}/users`, { id: newId, ...dataUser, });
   } else return Promise.reject(new Error("This login already exist."));
@@ -38,11 +38,11 @@ function getMyTexts(id) {
 }
 // cl(getMyTexts(19));
 
-async function sendText() {
+async function createRemoteTexts(id, login) {
   const texts = await axios.post(`${baseURL}/texttemplates`, {
-    id: 17,
-    login: "r1",
-    texts: ["text 1"],
+    id: id,
+    login: login,
+    texts: [],
   });
   console.log(texts);
 }
