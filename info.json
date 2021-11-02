@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 0,
-      "counterId": 24
+      "counterId": 28
     },
     {
       "id": 1,
@@ -111,6 +111,22 @@
     },
     {
       "id": 24
+    },
+    {
+      "id": 25,
+      "login": "r21",
+      "password": "r"
+    },
+    {
+      "id": 26
+    },
+    {
+      "id": 27
+    },
+    {
+      "id": 28,
+      "login": "r23",
+      "password": "r"
     }
   ],
   "texttemplates": [
@@ -123,7 +139,7 @@
       "login": "r2",
       "texts": [
         "guest text",
-        "fsaf"
+        "5\n"
       ]
     },
     {
@@ -147,7 +163,8 @@
         "r11 r222",
         "444",
         "http://localhost:3001/profile",
-        "Thank you so much for this really best course! I watched all videos on x2 speed within 1.5 month, you explained everything very understandably! In the end, I've understood that you are not just a best teacher, it turns out you are the most awesome motivator!!! I'll definitely donate regularly because the world needs people like you!"
+        "Thank you so much for this really best course! I watched all videos on x2 speed within 1.5 month, you explained everything very understandably! In the end, I've understood that you are not just a best teacher, it turns out you are the most awesome motivator!!! I'll definitely donate regularly because the world needs people like you!",
+        "If a floating element is taller than the containing element, it will overflow outside its container. It is possible to fix this with the \"clearfix hack\":"
       ]
     },
     {
@@ -156,6 +173,26 @@
         "22",
         "4554",
         "4554"
+      ]
+    },
+    {
+      "id": 25,
+      "login": "r21",
+      "texts": []
+    },
+    {
+      "id": 26,
+      "texts": []
+    },
+    {
+      "id": 27,
+      "texts": []
+    },
+    {
+      "id": 28,
+      "login": "r23",
+      "texts": [
+        "adfadf"
       ]
     }
   ]

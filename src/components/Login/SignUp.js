@@ -14,7 +14,6 @@ function SignUp(props) {
 
   return (
     <div>
-      <p>Sign Up</p>
       <SignUpForm onSubmit={onSubmit} nameButton="SignUp" />
       <p>{props.conditionMessage}</p>
       <hr />

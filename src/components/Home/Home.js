@@ -8,13 +8,14 @@ import Navbar from "../Navbar/Navbar";
 import Profile from "../Profile/Profile";
 import TrainingPage_v2 from "../TrainingPage/TrainingPage_v2";
 import TrainingPage_v2Container from "../TrainingPage/TrainingPage_v2Container";
-import css from './Home.module.css';
 import MainHeader from "./MainHeader";
+
+import css from './Home.module.css';
 
 function Home(props) {
   return (
     <div className={css.home}>
-      <header className={css.container}>
+      <header >
         <MainHeader isAuthorized={props.isAuthorized}/>       
       </header>
       <main className={css.home__main + " " + css.container} >

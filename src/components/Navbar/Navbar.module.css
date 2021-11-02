@@ -1,21 +1,47 @@
+
 .navbar {
   background: #088;
+  background: #111;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .navbar ul {
+  flex: 110 1vw;
   list-style: none;
-  padding: 10px 20px;
+  padding: 5px 0px;
+  margin: 0;
 }
 
 .navbar li {
-  padding-top: 5px;
+  padding-right: 15px;
+  display: inline;
+  text-transform: uppercase;
 }
 
 a.navbar__activeLink {
   color: #db0;
-  background: #061;
+  /* background: #061; */
 }
 
 .navbar__navLink {
-  color: #005;
+  color: #eee;
+  text-decoration: none;
+  /* color: #005; */
+}
+
+.navbar__login {
+  /* display: ; */
+  /* background: #355; */
+  flex: 1 10px;
+  text-transform: uppercase;
+  padding: 5px 0px;
+  /* outline: 2px solid yellow; */
+  
+  /* align-self: ; */
+}
+
+.navbar__login_name {
+  text-transform: none;
 }

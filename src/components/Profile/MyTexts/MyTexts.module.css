@@ -1,0 +1,39 @@
+
+.body {
+  background: w;
+}
+
+.textTemplate {
+  position: relative;
+}
+
+.textTemplate__text {
+  background: #040008;
+  border-radius: 10px;
+  border: 2px solid #000300;
+  padding: 5px;
+  margin: 20px 0 0px;
+}
+.textTemplate > button {
+  position: relative;
+  float: right;
+  /* margin: 30px auto; */
+  margin-top: 5px;
+  right: 20px;
+}
+
+.textTemplate::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.form {
+
+}
+
+.form ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}

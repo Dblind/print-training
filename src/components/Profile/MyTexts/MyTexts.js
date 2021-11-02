@@ -1,4 +1,5 @@
-
+import cssForm  from '../../common/css/CommonFormCSS.module.css';
+import css from './MyTexts.module.css';
 
 function MyTexts(props) {
   function handleSubmit2(formData) {
@@ -7,15 +8,18 @@ function MyTexts(props) {
   }
 
   return (
-    <div>
-      <p>My texts</p>
+    <div className={css.body}>
       <div>
         {props.myTexts.map(text => <TextItem text={text} setMainText={props.setMainText} />)}
       </div>
-      <form onSubmit={handleSubmit2}>
+      <form onSubmit={handleSubmit2} className={cssForm.form + " " + css.form}>
         <ul>
-          <li><textarea name="text2" id="textId" cols="44" rows="4"></textarea></li>
-          <li><input type="submit" value="send" /></li>
+          <li>
+            <textarea name="text2" id="textId" cols="44" rows="4"
+              className={cssForm.form__textarea}
+            />
+            </li>
+          <li><input type="submit" value="Send" className={cssForm.form__submit} /></li>
         </ul>
       </form>
     </div>
@@ -28,9 +32,9 @@ function TextItem(props) {
   }
 
   return (
-    <div>
-      <p>{props.text}</p>
-      <button onClick={() => chooseText()}>Choose</button>
+    <div className={css.textTemplate}>
+      <p className={css.textTemplate__text}>{props.text}</p>
+      <button onClick={() => chooseText()} className={cssForm.form__submit}>Choose</button>
     </div>
   )
 }
