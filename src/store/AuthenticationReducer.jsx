@@ -1,3 +1,5 @@
+import React from "react"
+import { AnyAction } from "redux"
 import { authenticationAPI } from "../API/api"
 
 
@@ -11,7 +13,7 @@ const initialState = {
   myTexts: ["guest text"],
 }
 
-const authenticationReducer = function (state = initialState, action) {
+const authenticationReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_AUTHORIZED: {
       return {
