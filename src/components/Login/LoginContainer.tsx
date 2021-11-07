@@ -1,21 +1,28 @@
-import { connect } from "react-redux"
+import { connect, ConnectedProps } from "react-redux"
 import { Field } from "redux-form";
-import { loginUser, setAuthorized, setAuthorizedUser } from "../../store/AuthenticationReducer";
-import LoginForm from "./forms/LoginForm";
+// import { loginUser, setAuthorized, setAuthorizedUser } from "../../store/AuthenticationReducer";
+import LoginForm, { ILoginFormData } from "./forms/LoginForm";
 import { authenticationAPI } from "../../API/api";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Login from "./Login";
+import { TAppStore } from "../../store/store";
+import { loginUser, setAuthorized, setAuthorizedUser } from "../../store/Authentication/actions";
 
+interface IPropsLoginContainer {
+  loginUser: (formData: ILoginFormData) => void,
+  conditionMessage: string,
+  statusNote: string,
+}
 
-function LoginContainer(props) {
+const LoginContainer: React.FC<ConnectProps> = (props) => {
   // const [statusNote, setStatusNote] = useState("");
   let a ;
   // useEffect(() => {}, [
   //   statusNote,
   // ]);
   let statusNote;
-  function onSubmit(formData) {
+  function onSubmit(formData: ILoginFormData) {
     // console.log(formData);
     // authenticationAPI.createUser(formData)
     //   .then(response => {setStatusNote(<span style={{background: "#0b3",}}>Successful creation of the new account.</span>)} )
@@ -37,7 +44,7 @@ function LoginContainer(props) {
 
       <Login
         onSubmit={onSubmit}
-        statusNote={statusNote}
+        // statusNote={statusNote}
         conditionMessage={props.conditionMessage}
       />
     </div>
@@ -45,13 +52,15 @@ function LoginContainer(props) {
 }
 
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: TAppStore) => ({
   isAuthorized: state.authentication.isAuthorized,
   conditionMessage: state.authentication.conditionMessage,
 })
 
-export default connect(mapStateToProps, {
+const connector = connect(mapStateToProps, {
   setAuthorized,
   setAuthorizedUser,
   loginUser,
-})(LoginContainer);
+});
+type ConnectProps = ConnectedProps<typeof connector>;
+export default connector(LoginContainer);

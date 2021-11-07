@@ -1,8 +1,13 @@
-import LoginForm from "./forms/LoginForm";
+import LoginForm, { ILoginFormData } from "./forms/LoginForm";
 import { NavLink } from "react-router-dom";
+import React from "react";
 
+interface IPropsLogin {
+  onSubmit: (FormData: ILoginFormData) => void,
+  conditionMessage: string,
+}
 
-function Login(props) {
+const Login:React.FC<IPropsLogin> = (props) => {
   return (
     <div>
       <LoginForm onSubmit={props.onSubmit} />

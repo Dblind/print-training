@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 0,
-      "counterId": 28
+      "counterId": 29
     },
     {
       "id": 1,
@@ -127,6 +127,11 @@
       "id": 28,
       "login": "r23",
       "password": "r"
+    },
+    {
+      "id": 29,
+      "login": "e1",
+      "password": "e"
     }
   ],
   "texttemplates": [
@@ -194,6 +199,11 @@
       "texts": [
         "adfadf"
       ]
+    },
+    {
+      "id": 29,
+      "login": "e1",
+      "texts": []
     }
   ]
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import { AnyAction, Dispatch } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
-import { TAppStore } from "..";
+import { TAppStore } from "../store";
 import { authenticationAPI } from "../../API/api";
+import { ILoginFormData } from "../../components/Login/forms/LoginForm";
 
 
 // actions definition
@@ -40,10 +41,10 @@ export function setMyTexts(texts: string[]): TAction { return { type: AuthAction
 function setConditionMessage(message: string): TAction { return { type: AuthActionTypes.SET_CONDITION_MESSAGE, message, } };
 
 
-type TAuthThunk = ThunkAction<any, any, unknown, TAction>;
+type TAuthThunk = ThunkAction<Promise<void>, TAppStore, unknown, TAction>;
 
 
-export const createUser = (userData: TUserData): TAuthThunk => {
+export const createUser = (userData: ILoginFormData): TAuthThunk => {
   return async dispatch => {
     const response = await authenticationAPI.createUser(userData)
 
@@ -58,22 +59,25 @@ export const createUser = (userData: TUserData): TAuthThunk => {
   }
 }
 
-export function loginUser(userData: TUserData): TAuthThunk {
+export function loginUser(userData: ILoginFormData): TAuthThunk {
   return async function (dispatch, getState) {
     dispatch({ type: AuthActionTypes.IS_FETCHING, condition: false, })
     dispatch(setIsFetching(true));
     // const response = await authenticationAPI.loginUser(formData);
-    authenticationAPI.loginUser(userData)
-      .then(response => {
-        // setStatusNote(<span style={{ background: "#0b3", }}>Successful creation of the new account.</span>) })
-        dispatch(setAuthorizedUser(response.data[0]));
-        dispatch(setConditionMessage("Successful login of the account."));
-        dispatch(getMyTexts());
-        console.log(response.data);
-      })
-      .catch((err: any) => {
-        dispatch(setConditionMessage(err.message));
-      });
+    try {
+      const response = await authenticationAPI.loginUser(userData)
+      console.log("check");
+      // setStatusNote(<span style={{ background: "#0b3", }}>Successful creation of the new account.</span>) })
+      dispatch(setAuthorizedUser(response.data[0]));
+      dispatch(setConditionMessage("Successful login of the account."));
+      dispatch(getMyTexts());
+      console.log(response.data);
+
+    }
+    catch (err: any) {
+      console.log("check error");
+      dispatch(setConditionMessage(err.message + `; ${typeof err}`));
+    }
   }
 }
 
@@ -90,11 +94,11 @@ export function sendMyText(text: string): TAuthThunk { // todo response type
 }
 
 export function getMyTexts(): TAuthThunk {
-  return async function (dispatch: Dispatch<TAction>, getState: () => TAppStore) {
+  return async function (dispatch, getState) {
     dispatch({ type: AuthActionTypes.IS_FETCHING, condition: false, });
     const response = await authenticationAPI.getMyTexts(getState().authentication.userId);
     const data = await response.json();
-    console.log(data);
+    // console.log(data);
     // dispatch(setMyTexts(data.texts));
   }
 }

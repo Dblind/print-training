@@ -1,13 +1,17 @@
 import React from "react";
 import reactDom from "react-dom";
 import { connect } from "react-redux"
-import { Field, reduxForm } from "redux-form";
+import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import cssForm from '../../common/css/CommonFormCSS.module.css';
 import css from './Form.module.css';
 
+export interface ILoginFormData {
+  login: string,
+  password: string,
+}
 
-const LoginForm = (props) => {
+const LoginForm: React.FC<InjectedFormProps<ILoginFormData>> = (props) => {
   return (
     <div>
       <form onSubmit={props.handleSubmit} className={`${cssForm.form} ${css.form}`}>
@@ -26,7 +30,7 @@ const LoginForm = (props) => {
   )
 }
 
-const LoginReduxForm = reduxForm({
+const LoginReduxForm = reduxForm<ILoginFormData>({
   form: "login",
 })(LoginForm);
 

@@ -14,14 +14,14 @@ const reducers = combineReducers({
   trainingPage,
 });
 
-export const reducerToExport = {
+export const reducersToStore = {
   authentication,
   trainingPage,
 }
 
-const store_index = createStore(reducers, applyMiddleware(thunk));
-export default store_index;
-export type TAppStore = ReturnType<typeof reducers>;
+// const store_index = createStore(reducers, applyMiddleware(thunk));
+// export default store_index;
+// export type TAppStore = ReturnType<typeof reducers>;
 
 
 
