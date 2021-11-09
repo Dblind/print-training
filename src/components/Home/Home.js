@@ -11,6 +11,7 @@ import TrainingPage_v2Container from "../TrainingPage/TrainingPage_v2Container";
 import MainHeader from "./MainHeader";
 
 import css from './Home.module.css';
+import Admin from "../Admin/Admin";
 
 function Home(props) {
   return (
@@ -29,6 +30,7 @@ function Home(props) {
             <Route path="/profile" component={() => <Profile />} />
             <Route path="/login" component={() => <LoginContainer />} />
             <Route path="/signUp" component={() => <SignUp />} />
+            <Route path="/admin" component={() => <Admin />} />
           </Switch>
         </div>
       </main>

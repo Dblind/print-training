@@ -2,8 +2,9 @@ import React from "react";
 import { AnyAction, Dispatch } from "redux";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { TAppStore } from "../store";
-import { authenticationAPI } from "../../API/api";
+// import { authenticationAPI } from "../../API/api";
 import { ILoginFormData } from "../../components/Login/forms/LoginForm";
+import { authenticationAPI } from "../../API/api-mongo";
 
 
 // actions definition
@@ -46,32 +47,34 @@ type TAuthThunk = ThunkAction<Promise<void>, TAppStore, unknown, TAction>;
 
 export const createUser = (userData: ILoginFormData): TAuthThunk => {
   return async dispatch => {
-    const response = await authenticationAPI.createUser(userData)
 
-    // setStatusNote(<span style={{ background: "#0b3", }}>Successful login of the account.</span>);
-    dispatch(setConditionMessage("Successful creation of the new account"));
-    dispatch(setAuthorizedUser(response.data));
-    console.log("response user data", response.data);
+    try {
+      const response = await authenticationAPI.createUser(userData)
 
-    // .catch(err => {
-    //   dispatch(setConditionMessage({err.message}));
-    // });
+      // setStatusNote(<span style={{ background: "#0b3", }}>Successful login of the account.</span>);
+      dispatch(setConditionMessage("Successful creation of the new account"));
+      console.log("response user data", response.data);
+      dispatch(setAuthorizedUser(response.data));
+
+    }
+    catch (error: any) {
+      dispatch(setConditionMessage(error.message));
+    };
   }
 }
 
 export function loginUser(userData: ILoginFormData): TAuthThunk {
   return async function (dispatch, getState) {
-    dispatch({ type: AuthActionTypes.IS_FETCHING, condition: false, })
     dispatch(setIsFetching(true));
-    // const response = await authenticationAPI.loginUser(formData);
     try {
+      // const response = await authenticationAPI.loginUser(formData);
       const response = await authenticationAPI.loginUser(userData)
-      console.log("check");
+      console.log("response login", response);
       // setStatusNote(<span style={{ background: "#0b3", }}>Successful creation of the new account.</span>) })
       dispatch(setAuthorizedUser(response.data[0]));
       dispatch(setConditionMessage("Successful login of the account."));
-      dispatch(getMyTexts());
-      console.log(response.data);
+      // dispatch(getMyTexts());
+      // console.log(response.data);
 
     }
     catch (err: any) {

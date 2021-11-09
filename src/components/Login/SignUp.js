@@ -5,6 +5,7 @@ import LoginForm from "./forms/LoginForm";
 import { authenticationAPI } from "../../API/api";
 import { useEffect, useState } from "react";
 import SignUpForm from "./forms/SignUpForm";
+import SignUpFormik from "./forms/SignUpForm_formik";
 
 
 function SignUp(props) {
@@ -14,9 +15,10 @@ function SignUp(props) {
 
   return (
     <div>
-      <SignUpForm onSubmit={onSubmit} nameButton="SignUp" />
+      {/* <SignUpForm onSubmit={onSubmit} nameButton="SignUp" /> */}
       <p>{props.conditionMessage}</p>
       <hr />
+      <SignUpFormik />
     </div>
   )
 }
